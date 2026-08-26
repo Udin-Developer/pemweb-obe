@@ -1,0 +1,13 @@
+# AI Usage Log - Praktikum Pemrograman Web
+
+Dokumen ini mencatat riwayat konsultasi dan pemanfaatan AI eksternal untuk transparansi akademik dan pemenuhan standar OBE.
+
+| Tanggal | Tujuan Penggunaan AI | Prompt Ringkas | Hasil | Verifikasi | Keputusan Mahasiswa |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| 2026-08-26 | Panduan pembaruan runtime PHP multi-platform | "cara updte versi php" | Langkah update versi PHP pada cPanel, Ubuntu/Debian, XAMPP Windows, dan macOS Homebrew | Memeriksa kecocokan metode update dengan environment lokal | Melanjutkan konsultasi spesifik ke environment Laragon yang digunakan |
+| 2026-08-26 | Prosedur upgrade versi PHP pada Laragon | "laragon" | Panduan instalasi binary PHP Thread Safe ke `C:\laragon\bin\php` dan pemilihan versi via GUI Laragon | Memeriksa struktur direktori Laragon dan eksekusi `php -v` di terminal | Menerapkan konfigurasi versi PHP pada Laragon lokal |
+| 2026-08-26 | Debugging error refspec branch Git | "git push --set-upstream origin master error: src refspec master does not match any..." | Identifikasi masalah branch `master` vs `main` serta instruksi pembuatan initial commit | Memeriksa branch aktif dan status file dengan `git branch` dan `git status` | Mengubah branch lokal ke `main` dan menyiapkan commit awal |
+| 2026-08-26 | Konfigurasi Git Credential Helper Windows | *[Screenshot CredentialHelperSelector]* | Rekomendasi memilih `manager-core` / `manager` dengan opsi persistensi | Memeriksa dialog antarmuka Windows Git Credential Selector | Memilih opsi `manager-core` untuk otentikasi Git |
+| 2026-08-26 | Mengatasi prompt autentikasi GitHub | "dimana dapat melihatnya" & *[Screenshot prompt Username]* | Penjelasan letak username akun dan panduan pembuatan Personal Access Token (PAT) pengganti password | Membuka GitHub Developer Settings untuk membuat PAT berizin `repo` | Menggunakan token PAT sebagai kredensial autentikasi remote |
+| 2026-08-26 | Debugging penolakan password akun GitHub | "sudah sesuai masih saja gagal" & *[Screenshot error password authentication failed]* | Analisis deprecation password akun biasa dan solusi direct remote URL / token PAT | Meninjau konfigurasi remote URL origin | Memperbarui URL remote dengan token dan scope yang valid |
+| 2026-08-26 | Resolusi konflik remote non-fast-forward | *[Screenshot error rejected main -> main (fetch first)]* | Solusi sinkronisasi riwayat divergen via `git pull --allow-unrelated-histories` atau `git push --force` | Mengonfirmasi status inisialisasi awal repository remote | Menjalankan `git push -u origin main --force` hingga kode lokal tersinkronisasi 100% |
