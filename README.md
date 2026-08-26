@@ -7,7 +7,7 @@ Dokumentasi repository ini disusun untuk Modul 01 Orientasi OBE
 2. NPM  : 2440304016
 
 # Deskripsi Singkat Proyek
-Proyek ini merupakan tahap awal implementasi pembuatan dokumen HTML, pengaturan web server menggunakan laragon, serta pecatatan request network web
+Proyek ini merupakan tahap awal implementasi pembuatan dokumen HTML, pengaturan web server menggunakan laragon, serta pecatatan request network web/
 
 # Teknologi & Lingkungan Pengembangan
 - HTMl5
