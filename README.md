@@ -5,6 +5,7 @@ Dokumentasi repository ini disusun untuk Modul 01 Orientasi OBE
 # Indetitas Mahasiswa
 1. Nama : Reza Randika Putra
 2. NPM  : 2440304016
+3. Jurusan : Teknik Komputer
 
 # Deskripsi Singkat Proyek
 Proyek ini merupakan tahap awal implementasi pembuatan dokumen HTML, pengaturan web server menggunakan laragon, serta pecatatan request network web
@@ -22,13 +23,3 @@ Proyek ini merupakan tahap awal implementasi pembuatan dokumen HTML, pengaturan 
 
 URL
 - URL: [httpp://localhost/pemweb-obe/]
-
-
- # Tugas OBE
-
-| No. | Nama Requset | Method | Status | Type |
-| 1. | www.bpjs-kesehatan.go.id | GET | 200 | document |
-| 2. | jquery.js | GET | 200 | script |
-| 3. | main.2d9811335dac0a91.js | GET | 200 | script |
-| 4. | id.json | GET | 200 | xhr |
-| 5. | id.json | GET | 200 | svg+xml |
