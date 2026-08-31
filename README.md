@@ -22,3 +22,13 @@ Proyek ini merupakan tahap awal implementasi pembuatan dokumen HTML, pengaturan 
 
 URL
 - URL: [httpp://localhost/pemweb-obe/]
+
+
+ # Tugas OBE
+
+| No. | Nama Requset | Method | Status | Type |
+| 1. | www.bpjs-kesehatan.go.id | GET | 200 | document |
+| 2. | jquery.js | GET | 200 | script |
+| 3. | main.2d9811335dac0a91.js | GET | 200 | script |
+| 4. | id.json | GET | 200 | xhr |
+| 5. | id.json | GET | 200 | svg+xml |
