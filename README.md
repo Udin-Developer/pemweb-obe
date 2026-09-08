@@ -43,3 +43,18 @@ URL
 | Atribut Alt Gambar | Terpenuhi | Gambar informatif menyertakan deskripsi kontekstual; gambar dekoratif menggunakan `alt=""`. |
 | Label Form | Terpenuhi | Seluruh elemen `<input>`, `<select>`, dan `<textarea>` terhubung secara eksplisit via `for` dan `id`. |
 | Navigasi Keyboard | Terpenuhi | Tab index mengikuti aliran visual dokumen alami tanpa keyboard trap; dilengkapi skip link ke `#konten-utama`. |
+
+# Modul 2: Struktur HTML5 & Aksesibilitas Dasar
+
+Penerapan struktur semantik sesuai fungsi konten (Katalog Event, Pemutar Audio Karya Musisi, Form Pendaftaran Kreator) beserta pengujian aksesibilitas.
+
+Checklist Aksesibilitas SKENA
+
+| Indikator | Status | Keterangan Verifikasi |
+| :--- | :---: | :--- |
+| Deklarasi Bahasa (`lang="id"`) | Terpenuhi | Terpasang pada tag pembuka `<html>` untuk parser screen reader. |
+| Hierarki Heading | Terpenuhi | Memiliki 1 `<h1>`, 3 `<h2>` untuk tiap section, dan 3 `<h3>` untuk article. Tidak ada heading yang melompat tingkat. |
+| Atribut Alt Gambar | Terpenuhi | Gambar poster `Asset/aku_gitaris.jpg` menyertakan deskripsi kontekstual informatif secara spesifik. |
+| Label Form | Terpenuhi | Seluruh elemen `<input>` dan `<select>` terhubung secara eksplisit via `for` dan `id`. |
+| Teks Link | Terpenuhi | Tersedia navigasi aksesibilitas *skip link* ("Lewati ke konten utama") dan teks tautan detail event yang deskriptif. |
+| Navigasi Keyboard | Terpenuhi | Tab index mengikuti aliran visual dokumen alami menelusuri menu, input form, hingga elemen `<audio controls>` tanpa *keyboard trap*. |
