@@ -46,7 +46,7 @@ URL
 
 # Modul 2: Struktur HTML5 & Aksesibilitas Dasar
 
-Penerapan struktur semantik sesuai fungsi konten (Katalog Event, Pemutar Audio Karya Musisi, Form Pendaftaran Kreator) beserta pengujian aksesibilitas.
+Penerapan struktur semantik sesuai fungsi konten
 
 Checklist Aksesibilitas SKENA
 
