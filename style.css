@@ -2,11 +2,15 @@
     --space-1: 0.5rem;
     --space-2: 1rem;
     --space-3: 2rem;
-    --brand: #f40008f4;
+    --brand: #FF0066; /* Magenta cerah ala Synchronize */
+    --accent: #CCFF00; /* Hijau neon ala Pestapora */
+    --accent-blue: #00E5FF;
     --surface: #ffffff;
-    --background: #f9fafb;
-    --text-dark: #1f2937;
-    --radius: 0.75rem;
+    --background: #F4F0EA; /* Putih gading bertekstur kertas poster */
+    --text-dark: #111111;
+    --radius: 8px;
+    --border-hard: 3px solid var(--text-dark);
+    --shadow-hard: 6px 6px 0px var(--text-dark);
 }
 
 * {
@@ -20,6 +24,9 @@ body {
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--background);
+    /* Latar belakang grid titik untuk kesan retro */
+    background-image: radial-gradient(#ccc 1px, transparent 1px);
+    background-size: 20px 20px; 
 }
 
 .container {
@@ -27,32 +34,68 @@ body {
     margin-inline: auto;
 }
 
-.img-fluid {
-    max-width: 100%;
-    height: auto;
-    border-radius: var(--radius);
-}
-
 nav {
     display: flex;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
     gap: var(--space-2);
     padding: var(--space-2) 0;
-    border-bottom: 2px solid #658dde;
+    border-bottom: var(--border-hard);
     margin-bottom: var(--space-3);
 }
 
 nav a {
     text-decoration: none;
     color: var(--text-dark);
-    font-weight: bold;
+    font-weight: 900;
+    text-transform: uppercase;
     padding: var(--space-1) var(--space-2);
+    border: var(--border-hard);
+    border-radius: var(--radius);
+    background-color: var(--accent);
+    box-shadow: 3px 3px 0px var(--text-dark);
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+nav a:nth-child(2) {
+    background-color: var(--accent-blue);
+}
+
+nav a:hover {
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px 0px var(--text-dark);
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: clamp(2rem, 5vw, 4rem);
+    margin-bottom: 30px;
+    width: 100%;
+    background-color: var(--brand);
+    color: white;
+    border: var(--border-hard);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-hard);
+}
+
+.hero h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+@media (min-width: 768px) {
+    .hero {
+        grid-template-columns: 1.5fr 1fr;
+    }
 }
 
 .cards {
     display: grid;
-    grid-template-columns: 1fr; /* Mobile-first: 1 kolom */
-    gap: var(--space-2);
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
     margin-bottom: var(--space-3);
 }
 
@@ -71,50 +114,69 @@ nav a {
 .card {
     padding: var(--space-2);
     background: var(--surface);
-    border: 1px solid #b6b473;
+    border: var(--border-hard);
     border-radius: var(--radius);
+    box-shadow: var(--shadow-hard);
 }
 
-.card audio, input {
+.card h3 {
+    background-color: var(--accent);
+    display: inline-block;
+    padding: 4px 8px;
+    border: 2px solid var(--text-dark);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.card audio, input, select {
     width: 100%;
+    padding: 10px;
     margin-top: 8px;
+    border: 2px solid var(--text-dark);
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+button {
+    margin-top: 15px;
+    padding: 12px 20px;
+    background-color: var(--accent-blue);
+    color: var(--text-dark);
+    border: var(--border-hard);
+    border-radius: var(--radius);
+    box-shadow: 3px 3px 0px var(--text-dark);
+    cursor: pointer;
+    font-weight: 900;
+    text-transform: uppercase;
+    transition: all 0.1s;
+}
+
+button:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px 0px var(--text-dark);
 }
 
 a:focus-visible, 
 button:focus-visible, 
-input:focus-visible {
-    outline: 3px solid var(--brand);
-    outline-offset: 3px;
+input:focus-visible, 
+select:focus-visible {
+    outline: 4px dashed var(--brand);
+    outline-offset: 4px;
 }
 
 .skip-link {
     position: absolute;
     top: -40px;
     left: 0;
-    background: var(--brand);
-    color: white;
+    background: var(--text-dark);
+    color: var(--accent);
     padding: 8px;
+    border: 2px solid var(--accent);
     z-index: 100;
+    font-weight: bold;
 }
 
 .skip-link:focus {
     top: 0;
-}
-
-.hero {
-    display: grid;
-    grid-template-columns: 1fr; /* 'fr': membagi luasan sisa */
-    gap: 2rem; /* 'rem': menyesuaikan dengan ukuran font root */
-    padding: clamp(2rem, 5vw, 4rem); /* 'clamp()': batas elastis adaptif */
-    margin-bottom: 30px; /* 'px': ukuran statis absolut */
-    width: 100%; /* '%': persentase luasan kontainer */
-    background-color: var(--text-dark);
-    color: white;
-    border-radius: var(--radius);
-}
-
-@media (min-width: 768px) {
-    .hero {
-        grid-template-columns: 1.5fr 1fr;
-    }
 }
