@@ -3,12 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="SKENA: Sistem Katalog Event dan Narasi Audio untuk wilayah Kalimantan Timur">
+    <meta name="description" content="SKENA: Sistem Katalog Event dan Narasi Audio untuk wilayah Kota Tarakan">
     <title>SKENA - Sistem Katalog Event dan Narasi Audio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <a href="#main">Lewati ke konten utama</a>
+    <!--- Class="container --->
+    <header class="container">
+        <a href="#main" class="skip-link">Lewati ke konten utama</a>
         <h1>SKENA</h1>
         <nav aria-label="Navigasi utama">
             <a href="#katalog-event">Katalog Event</a>
@@ -17,75 +19,97 @@
         </nav>
     </header>
 
-<main id="main">
+    <!--- Tambahkan class="container" --->
+    <main id="main" class="container">
+        
+        <!-- Komponen Hero WAJIB untuk Latihan E.3 -->
+        <section class="hero">
+            <div class="hero-text">
+                <h2>Panggung Distorsi & Nada Alternatif</h2>
+                <p>Eksplorasi pergerakan musisi lokal independen di Kota Tarakan.</p>
+            </div>
+        </section>
+
+        <!-- Komentar diperbaiki -->
         <!-- Section 1: Katalog Event -->
         <section id="katalog-event">
             <h2>Katalog Gigs & Event Terbaru</h2>
             <p>Temukan berbagai panggung musik dan showcase kesenian di sekitar Anda.</p>
             
-            <article>
-                <h3>Konser Suara Pesisir</h3>
-                <img src="Asset/aku_gitaris.jpg" width="10%" height="10%" alt="Poster acara Konser GBK (Gigs Besok Kerja)">
-                <p>Panggung GBK (Gigs Besok Kerja) </p>
-                <p>Tanggal: 15 Oktober 2026</p>
-                <a href="/event/suara-pesisir">Lihat Detail Event</a>
-            </article>
+            <!-- Elemen dibungkus div.cards -->
+            <div class="cards">
+                <article class="card">
+                    <h3>Konser Suara Pesisir</h3>
+                    <!-- Atribut width/height dihapus, tambahkan class img-fluid -->
+                    <img src="Asset/aku_gitaris.jpg" alt="Poster acara Konser GBK (Gigs Besok Kerja)" style="max-width: 100%; height: auto; border-radius: 8px;">
+                    <p>Panggung GBK (Gigs Besok Kerja)</p>
+                    <p>Tanggal: 15 Oktober 2026</p>
+                    <a href="/event/suara-pesisir">Lihat Detail Event</a>
+                </article>
+            </div>
         </section>
 
-        <!-- Section 2: Karya Musisi Lokal (Pembaruan) -->
+        <!-- Section 2: Karya Musisi Lokal -->
         <section id="narasi-audio">
             <h2>Katalog Karya Musisi Lokal</h2>
             <p>Dengarkan rilisan terbaru lintas genre, mulai dari indie pop, pop RnB, hingga alternative rock.</p>
             
-            <article>
-                <h3>Midwest emo</h3>
-                <p>Aransemen vokal dan petikan gitar akustik.</p>
-                <audio controls>
-                    <source src="/audio/midwest-emo.mp3" type="audio/mpeg">
-                    Browser Anda tidak mendukung pemutaran audio.
-                </audio>
-            </article>
+            <!-- Elemen dibungkus div.cards -->
+            <div class="cards">
+                <article class="card">
+                    <h3>Midwest emo</h3>
+                    <p>Aransemen vokal dan petikan gitar akustik.</p>
+                    <audio controls>
+                        <source src="/audio/midwest-emo.mp3" type="audio/mpeg">
+                        Browser Anda tidak mendukung pemutaran audio.
+                    </audio>
+                </article>
 
-            <article>
-                <h3>MetalHead</h3>
-                <p>Eksplorasi metal</p>
-                <audio controls>
-                    <source src="/audio/metalhead.mp3" type="audio/mpeg">
-                    Browser Anda tidak mendukung pemutaran audio.
-                </audio>
-            </article>
+                <article class="card">
+                    <h3>MetalHead</h3>
+                    <p>Eksplorasi metal</p>
+                    <audio controls>
+                        <source src="/audio/metalhead.mp3" type="audio/mpeg">
+                        Browser Anda tidak mendukung pemutaran audio.
+                    </audio>
+                </article>
+            </div>
         </section>
 
-        <!-- Section 3: Daftar Kreator (Pembaruan Form) -->
+        <!-- Section 3: Daftar Kreator -->
         <section id="daftar-kreator">
-            <h2>Berikan Masukkan dan bargabunglah</h2>
+            <h2>Berikan Masukkan dan bergabunglah</h2>
             <p>Bergabunglah bersama kami untuk mempublikasikan jadwal gigs atau karya musik Anda di SKENA.</p>
             
-            <form action="/submit-pendaftaran" method="POST">
-                <label for="nama-lengkap">Nama Lengkap atau Nama Band</label>
-                <input id="nama-lengkap" name="nama-lengkap" type="text" required>
-                <br><br>
-                
-                <label for="email">Alamat Email</label>
-                <input id="email" name="email" type="email" required>
-                <br><br>
-                
-                <label for="kategori">Kategori Karya</label>
-                <select id="kategori" name="kategori">
-                    <option value="promotor">Penyelenggara Event/Gigs</option>
-                    <option value="musisi-solo">Musisi Solo (Gitar/Piano)</option>
-                    <option value="band">Grup Band</option>
-                    <option value="penulis-lirik">Penulis Lirik / Produser</option>
-                </select>
-                <br><br>
-                
-                <button type="submit">Kirim Pendaftaran</button>
-            </form>
+            <!-- Form dibungkus dengan div.card agar memiliki border & seragam dengan yang lain -->
+            <div class="card">
+                <form action="/submit-pendaftaran" method="POST">
+                    <label for="nama-lengkap">Nama Lengkap atau Nama Band</label>
+                    <input id="nama-lengkap" name="nama-lengkap" type="text" required>
+                    <br><br>
+                    
+                    <label for="email">Alamat Email</label>
+                    <input id="email" name="email" type="email" required>
+                    <br><br>
+                    
+                    <label for="kategori">Kategori Karya</label>
+                    <select id="kategori" name="kategori">
+                        <option value="promotor">Penyelenggara Event/Gigs</option>
+                        <option value="musisi-solo">Musisi Solo (Gitar/Piano)</option>
+                        <option value="band">Grup Band</option>
+                        <option value="penulis-lirik">Penulis Lirik / Produser</option>
+                    </select>
+                    <br><br>
+                    
+                    <button type="submit">Kirim Pendaftaran</button>
+                </form>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <p>2026 SKENA - Sistem Katalog Event dan Narasi Audio</p>
+    <!-- Tambahkan class="container" -->
+    <footer class="container">
+        <p>&copy; 2026 SKENA - Sistem Katalog Event dan Narasi Audio</p>
     </footer>
 </body>
 </html>

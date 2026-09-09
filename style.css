@@ -1,0 +1,120 @@
+:root {
+    --space-1: 0.5rem;
+    --space-2: 1rem;
+    --space-3: 2rem;
+    --brand: #f40008f4;
+    --surface: #ffffff;
+    --background: #f9fafb;
+    --text-dark: #1f2937;
+    --radius: 0.75rem;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--background);
+}
+
+.container {
+    width: min(100% - 2rem, 72rem);
+    margin-inline: auto;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: var(--space-2);
+    padding: var(--space-2) 0;
+    border-bottom: 2px solid #658dde;
+    margin-bottom: var(--space-3);
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: bold;
+    padding: var(--space-1) var(--space-2);
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile-first: 1 kolom */
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+}
+
+@media (min-width: 768px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.card {
+    padding: var(--space-2);
+    background: var(--surface);
+    border: 1px solid #b6b473;
+    border-radius: var(--radius);
+}
+
+.card audio, input {
+    width: 100%;
+    margin-top: 8px;
+}
+
+a:focus-visible, 
+button:focus-visible, 
+input:focus-visible {
+    outline: 3px solid var(--brand);
+    outline-offset: 3px;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--brand);
+    color: white;
+    padding: 8px;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: 1fr; /* 'fr': membagi luasan sisa */
+    gap: 2rem; /* 'rem': menyesuaikan dengan ukuran font root */
+    padding: clamp(2rem, 5vw, 4rem); /* 'clamp()': batas elastis adaptif */
+    margin-bottom: 30px; /* 'px': ukuran statis absolut */
+    width: 100%; /* '%': persentase luasan kontainer */
+    background-color: var(--text-dark);
+    color: white;
+    border-radius: var(--radius);
+}
+
+@media (min-width: 768px) {
+    .hero {
+        grid-template-columns: 1.5fr 1fr;
+    }
+}
