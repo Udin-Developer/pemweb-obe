@@ -58,3 +58,13 @@ Checklist Aksesibilitas SKENA
 | Label Form | Terpenuhi | Seluruh elemen `<input>` dan `<select>` terhubung secara eksplisit via `for` dan `id`. |
 | Teks Link | Terpenuhi | Tersedia navigasi aksesibilitas *skip link* ("Lewati ke konten utama") dan teks tautan detail event yang deskriptif. |
 | Navigasi Keyboard | Terpenuhi | Tab index mengikuti aliran visual dokumen alami menelusuri menu, input form, hingga elemen `<audio controls>` tanpa *keyboard trap*. |
+
+# Modul 3: CSS Modern, Responsive Design, & UI/UX
+
+Penerapan tata letak *mobile-first* responsif dan desain antarmuka bergaya festival musik.
+
+| Parameter Evaluasi | Keputusan Desain & Implementasi Kode SKENA | Status |
+| :--- | :--- | :--- |
+| **Tema Visual UI** | Mengadopsi estetika *neo-brutalism* (seperti visual Pestapora/Synchronize Fest) menggunakan *hard-shadow* tebal dan warna kontras untuk merepresentasikan subkultur musisi independen. | Terpenuhi |
+| **Hierarchy & Spacing** | Pemisahan hierarki diatur secara ekstrem lewat `font-weight: 900` dan *border* (`3px solid`), dengan kerapian yang dikontrol penuh oleh variabel jarak CSS (`--space`). | Terpenuhi |
+| **Kontras & Keterbacaan** | Memastikan kontras *font* gelap di atas latar belakang terang/bertekstur. Indikator fokus diubah ke pola *dashed* yang tebal agar navigasi tidak tenggelam dalam ramainya desain UI. | Terpenuhi |
