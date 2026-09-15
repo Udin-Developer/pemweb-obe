@@ -2,11 +2,11 @@
     --space-1: 0.5rem;
     --space-2: 1rem;
     --space-3: 2rem;
-    --brand: #FF0066; /* Magenta cerah ala Synchronize */
-    --accent: #CCFF00; /* Hijau neon ala Pestapora */
+    --brand: #FF0066;
+    --accent: #CCFF00;
     --accent-blue: #00E5FF;
     --surface: #ffffff;
-    --background: #F4F0EA; /* Putih gading bertekstur kertas poster */
+    --background: #F4F0EA;
     --text-dark: #111111;
     --radius: 8px;
     --border-hard: 3px solid var(--text-dark);
