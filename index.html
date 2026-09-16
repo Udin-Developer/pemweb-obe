@@ -45,25 +45,39 @@
             </div>
         </section>
 
+        <!-- Section 2: Karya Musisi Lokal -->
         <section id="narasi-audio">
             <h2>Katalog Karya Musisi Lokal</h2>
             <p>Dengarkan rilisan terbaru lintas genre, mulai dari indie pop, pop RnB, hingga alternative rock.</p>
             
             <div class="cards">
+                <!-- Gunakan HTML statis biasa, bukan fungsi .map() React -->
                 <article class="card">
-                    <h3>Midwest emo</h3>
-                    <p>Aransemen vokal dan petikan gitar akustik.</p>
+                    <h3>Suar</h3>
+                    <p>Moeremans</p>
+                    <p>5.50 menit</p>
                     <audio controls>
-                        <source src="/audio/midwest-emo.mp3" type="audio/mpeg">
+                        <source src="/audio/K001.mp3" type="audio/mpeg">
                         Browser Anda tidak mendukung pemutaran audio.
                     </audio>
                 </article>
 
                 <article class="card">
-                    <h3>MetalHead</h3>
-                    <p>Eksplorasi metal</p>
+                    <h3>Vas Bunga</h3>
+                    <p>Lomba Sihir</p>
+                    <p>3.22 menit</p>
                     <audio controls>
-                        <source src="/audio/metalhead.mp3" type="audio/mpeg">
+                        <source src="/audio/K002.mp3" type="audio/mpeg">
+                        Browser Anda tidak mendukung pemutaran audio.
+                    </audio>
+                </article>
+
+                <article class="card">
+                    <h3>Penghujung Cerita</h3>
+                    <p>Murphy Radio</p>
+                    <p>4.45 menit</p>
+                    <audio controls>
+                        <source src="/audio/K003.mp3" type="audio/mpeg">
                         Browser Anda tidak mendukung pemutaran audio.
                     </audio>
                 </article>
@@ -103,5 +117,7 @@
     <footer class="container">
         <p>&copy; 2026 SKENA - Sistem Katalog Event dan Narasi Audio</p>
     </footer>
+
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>
