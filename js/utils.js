@@ -12,6 +12,7 @@ export function ringkasKarya(data) {
 }
 
 export function cariBerdasarkanId(data, idDicari) {
-    if (!Array.isArray(data)) throw new TypeError('Data harus berupa array');
+    if (!Array.isArray(data)) 
+        throw new TypeError('Data harus berupa array');
     return data.find(item => item.id === idDicari);
 }
