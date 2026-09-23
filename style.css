@@ -261,3 +261,23 @@ select:focus-visible {
     outline: 4px dashed var(--brand);
     outline-offset: 4px;
 }
+
+
+/* Variabel CSS untuk Mode Gelap */
+[data-theme="dark"] {
+    --brand: #FF3385; /* Warna brand sedikit lebih terang */
+    --accent: #99CC00; /* Warna aksen disesuaikan */
+    --accent-blue: #00B3CC;
+    --surface: #222222; /* Warna latar kartu */
+    --background: #111111; /* Warna latar utama gelap */
+    --text-dark: #F4F0EA; /* Warna teks menjadi terang */
+    --border-hard: 3px solid var(--text-dark);
+    --shadow-hard: 6px 6px 0px var(--text-dark);
+    /* Latar belakang grid titik untuk dark mode */
+    background-image: radial-gradient(#333 1px, transparent 1px);
+}
+
+/* Opsional: Tambahkan transisi agar perubahan warna terlihat halus (smooth) */
+body, .card, nav a, button {
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s;
+}

@@ -21,6 +21,11 @@
         <a href="#narasi-audio">Karya</a>
         <a href="#daftar-kreator">Gabung</a>
     </nav>
+    
+    <!-- TAMBAHAN: Tombol Fitur Dark Mode -->
+    <button id="theme-toggle" type="button" style="margin-left: auto; font-size: 0.9rem;">
+            Mode Gelap
+    </button>
 </header>
 
     <main id="main" class="container">
@@ -49,42 +54,35 @@
             </div>
         </section>
 
-        <!-- Section 2: Karya Musisi Lokal -->
+
+<!-- Section 2: Karya Musisi Lokal -->
         <section id="narasi-audio">
             <h2>Katalog Karya Musisi Lokal</h2>
             <p>Dengarkan rilisan terbaru lintas genre, mulai dari indie pop, pop RnB, hingga alternative rock.</p>
             
-            <div class="cards">
-                <!-- Gunakan HTML statis biasa, bukan fungsi .map() React -->
-                <article class="card">
-                    <h3>Suar</h3>
-                    <p>Moeremans</p>
-                    <p>5.50 menit</p>
-                    <audio controls>
-                        <source src="/audio/K001.mp3" type="audio/mpeg">
-                        Browser Anda tidak mendukung pemutaran audio.
-                    </audio>
-                </article>
+            <!-- Tambahan Modul 5: Toolbar Pencarian dan Filter -->
+            <div class="toolbar" aria-label="Filter dan Pencarian" style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 250px;">
+                    <label for="search">Cari Karya / Musisi:</label>
+                    <input id="search" type="search" placeholder="Ketik judul lagu atau nama musisi...">
+                </div>
+                <div>
+                    <label for="limit">Tampilkan:</label>
+                    <select id="limit">
+                        <option value="3">3 item</option>
+                        <option value="5">5 item</option>
+                        <option value="10">10 item</option>
+                    </select>
+                </div>
+            </div>
 
-                <article class="card">
-                    <h3>Vas Bunga</h3>
-                    <p>Lomba Sihir</p>
-                    <p>3.22 menit</p>
-                    <audio controls>
-                        <source src="/audio/K002.mp3" type="audio/mpeg">
-                        Browser Anda tidak mendukung pemutaran audio.
-                    </audio>
-                </article>
-
-                <article class="card">
-                    <h3>Penghujung Cerita</h3>
-                    <p>Murphy Radio</p>
-                    <p>4.45 menit</p>
-                    <audio controls>
-                        <source src="/audio/K003.mp3" type="audio/mpeg">
-                        Browser Anda tidak mendukung pemutaran audio.
-                    </audio>
-                </article>
+            <!-- Tambahan Modul 5: Panel Detail Tersembunyi -->
+            <div id="detail-panel" style="display: none; padding: 15px; margin-bottom: 20px; background-color: var(--accent-blue); border: var(--border-hard); border-radius: var(--radius); box-shadow: 3px 3px 0px var(--text-dark);">
+            </div>
+            
+            <!-- Container dikosongkan. Elemen Card akan di-render melalui app.js -->
+            <div id="katalog-karya-container" class="cards" aria-live="polite">
+                <!-- Elemen dinamis akan masuk ke sini -->
             </div>
         </section>
 
