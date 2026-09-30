@@ -92,23 +92,33 @@
             <p>Bergabunglah bersama kami untuk mempublikasikan jadwal gigs atau karya musik Anda di SKENA.</p>
             
             <div class="card">
-                <form action="/submit-pendaftaran" method="POST">
-                    <label for="nama-lengkap">Nama Lengkap atau Nama Band</label>
-                    <input id="nama-lengkap" name="nama-lengkap" type="text" required>
-                    <br><br>
-                    
-                    <label for="email">Alamat Email</label>
-                    <input id="email" name="email" type="email" required>
-                    <br><br>
+                <form id="form-pendaftaran" action="/submit-pendaftaran" method="POST" novalidate>
+                    <!-- Area status untuk pengguna screen reader / feedback global -->
+                    <p id="form-status" aria-live="polite" style="font-weight: bold; margin-bottom: 15px;"></p>
+
+                    <label for="nama">Nama Lengkap atau Nama Band</label>
+                    <input id="nama" name="nama" type="text" required minlength="3">
+                    <span id="error-nama" class="error" style="color: var(--brand); display: block; margin-bottom: 10px; font-weight: bold;"></span>
                     
                     <label for="kategori">Kategori Karya</label>
-                    <select id="kategori" name="kategori">
+                    <select id="kategori" name="kategori" required>
+                        <option value="">-- Pilih Kategori --</option>
                         <option value="promotor">Penyelenggara Event/Gigs</option>
                         <option value="musisi-solo">Musisi Solo (Gitar/Piano)</option>
                         <option value="band">Grup Band</option>
                         <option value="penulis-lirik">Penulis Lirik / Produser</option>
                     </select>
-                    <br><br>
+                    <span id="error-kategori" class="error" style="color: var(--brand); display: block; margin-bottom: 10px; font-weight: bold;"></span>
+
+                    <!-- Penambahan tipe number -->
+                    <label for="jumlah">Jumlah Personel / Anggota Tim</label>
+                    <input id="jumlah" name="jumlah" type="number" required min="1">
+                    <span id="error-jumlah" class="error" style="color: var(--brand); display: block; margin-bottom: 10px; font-weight: bold;"></span>
+
+                    <!-- Penambahan tipe date -->
+                    <label for="tanggal">Tanggal Mulai Berkarir / Perolehan Berkas</label>
+                    <input id="tanggal" name="tanggal" type="date" required>
+                    <span id="error-tanggal" class="error" style="color: var(--brand); display: block; margin-bottom: 10px; font-weight: bold;"></span>
                     
                     <button type="submit">Kirim Pendaftaran</button>
                 </form>

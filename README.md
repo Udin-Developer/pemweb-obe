@@ -68,3 +68,14 @@ Penerapan tata letak *mobile-first* responsif dan desain antarmuka bergaya festi
 | **Tema Visual UI** | Mengadopsi estetika *neo-brutalism* (seperti visual Pestapora/Synchronize Fest) menggunakan *hard-shadow* tebal dan warna kontras untuk merepresentasikan subkultur musisi independen. | Terpenuhi |
 | **Hierarchy & Spacing** | Pemisahan hierarki diatur secara ekstrem lewat `font-weight: 900` dan *border* (`3px solid`), dengan kerapian yang dikontrol penuh oleh variabel jarak CSS (`--space`). | Terpenuhi |
 | **Kontras & Keterbacaan** | Memastikan kontras *font* gelap di atas latar belakang terang/bertekstur. Indikator fokus diubah ke pola *dashed* yang tebal agar navigasi tidak tenggelam dalam ramainya desain UI. | Terpenuhi |
+
+# Modul 6: Form, Validasi, Accessibility, dan Input Handling
+
+Penerapan validasi data sisi klien (*client-side validation*) dan peningkatan aksesibilitas antarmuka (*accessibility*) pada form pendaftaran kreator SKENA.
+
+| Indikator | Status | Keterangan Verifikasi |
+| :--- | :---: | :--- |
+| **HTML5 Validation** | Terpenuhi | Penerapan atribut *constraint* bawaan seperti `type="number"`, `type="date"`, `min="1"`, dan `required` sebagai lapisan penyaringan awal. |
+| **JavaScript Business Validation** | Terpenuhi | Fungsi `validateForm` mengevaluasi batasan waktu rasional (tanggal tidak melebihi hari ini), keamanan opsi kategori, dan sanitasi format (regex) pada nama. |
+| **Pesan Error & Aksesibilitas** | Terpenuhi | Pesan error dirender dinamis berdekatan dengan elemen terkait. Menggunakan `aria-invalid="true"` dan `.focus()` untuk memandu pengguna layar/keyboard secara langsung ke lokasi kesalahan. |
+| **Penahanan Submit Default** | Terpenuhi | Implementasi `event.preventDefault()` berfungsi menahan pengiriman form ke server secara otomatis jika terdapat temuan data invalid. |

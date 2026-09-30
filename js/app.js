@@ -161,3 +161,97 @@ function updateButtonText(theme) {
         themeToggleBtn.textContent = 'Mode Gelap';
     }
 }
+
+// --- IMPLEMENTASI MODUL 6: VALIDASI FORM ---
+const formPendaftaran = document.querySelector('#form-pendaftaran');
+const formStatus = document.querySelector('#form-status');
+
+function validateForm(data) {
+    const errors = {};
+
+    const nama = String(data.get('nama') ?? '').trim();
+    const kategori = String(data.get('kategori') ?? '').trim();
+    const jumlah = data.get('jumlah');
+    const tanggal = data.get('tanggal');
+
+    // Validasi Nama (Membedakan kosong dan salah format)
+    const regexNama = /^[a-zA-Z0-9\s]+$/; // Hanya huruf, angka, dan spasi
+    
+    if (!nama) {
+        errors.nama = 'Nama tidak boleh kosong.';
+    } else if (nama.length < 3) {
+        errors.nama = 'Nama harus terdiri dari minimal 3 karakter.';
+    } else if (!regexNama.test(nama)) {
+        errors.nama = 'Nama hanya boleh berisi huruf dan angka, tanpa simbol khusus.';
+    }
+
+    // Validasi Kategori
+    const kategoriValid = ['promotor', 'musisi-solo', 'band', 'penulis-lirik'];
+    if (!kategori) {
+        errors.kategori = 'Kategori wajib dipilih.';
+    } else if (!kategoriValid.includes(kategori)) {
+        errors.kategori = 'Pilihan kategori tidak valid.';
+    }
+
+    // Validasi Jumlah Personel (Number)
+    if (!jumlah) {
+        errors.jumlah = 'Jumlah personel tidak boleh kosong.';
+    } else {
+        const numJumlah = Number(jumlah);
+        if (!Number.isInteger(numJumlah) || numJumlah < 1) {
+            errors.jumlah = 'Jumlah harus berupa bilangan bulat dan minimal 1.';
+        }
+    }
+
+    // Validasi Tanggal
+    if (!tanggal) {
+        errors.tanggal = 'Tanggal wajib diisi.';
+    } else {
+        const inputDate = new Date(tanggal);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // Normalisasi waktu ke tengah malam
+        
+        if (inputDate > today) {
+            errors.tanggal = 'Tanggal tidak boleh melebihi hari ini.';
+        }
+    }
+
+    return errors;
+}
+
+formPendaftaran.addEventListener('submit', event => {
+    event.preventDefault(); // Menahan pengiriman data ke server
+    
+    const data = new FormData(formPendaftaran);
+    const errors = validateForm(data);
+
+    // Reset status error dan atribut aria-invalid
+    document.querySelectorAll('.error').forEach(el => el.textContent = '');
+    formPendaftaran.querySelectorAll('[aria-invalid="true"]').forEach(el => el.removeAttribute('aria-invalid'));
+    formStatus.textContent = '';
+    formStatus.style.color = '';
+
+    // Jika ada error
+    if (Object.keys(errors).length > 0) {
+        for (const [field, message] of Object.entries(errors)) {
+            const errorElement = document.querySelector(`#error-${field}`);
+            if (errorElement) errorElement.textContent = message;
+            
+            const inputElement = formPendaftaran.elements[field];
+            if (inputElement) inputElement.setAttribute('aria-invalid', 'true');
+        }
+        
+        // Arahkan kursor ke input pertama yang error
+        const firstField = Object.keys(errors)[0];
+        const firstInput = formPendaftaran.elements[firstField];
+        if (firstInput) firstInput.focus();
+        
+        formStatus.style.color = 'var(--brand)';
+        formStatus.textContent = 'Periksa kembali data yang belum valid.';
+        return;
+    }
+
+    // Jika valid, tampilkan preview dan jangan kirim dulu
+    formStatus.style.color = 'green';
+    formStatus.textContent = 'Data valid dan siap dikirim (Sistem menahan submit untuk preview).';
+});
