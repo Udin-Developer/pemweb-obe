@@ -50,41 +50,41 @@
                     <p>Panggung GBK (Gigs Besok Kerja)</p>
                     <p>Tanggal: 15 Oktober 2026</p>
                     <a href="/event/suara-pesisir">Lihat Detail Event</a>
+                    
                 </article>
             </div>
         </section>
 
 
 <!-- Section 2: Karya Musisi Lokal -->
-        <section id="narasi-audio">
-            <h2>Katalog Karya Musisi Lokal</h2>
-            <p>Dengarkan rilisan terbaru lintas genre, mulai dari indie pop, pop RnB, hingga alternative rock.</p>
-            
-            <!-- Tambahan Modul 5: Toolbar Pencarian dan Filter -->
-            <div class="toolbar" aria-label="Filter dan Pencarian" style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
-                <div style="flex: 1; min-width: 250px;">
-                    <label for="search">Cari Karya / Musisi:</label>
-                    <input id="search" type="search" placeholder="Ketik judul lagu atau nama musisi...">
-                </div>
-                <div>
-                    <label for="limit">Tampilkan:</label>
-                    <select id="limit">
-                        <option value="3">3 item</option>
-                        <option value="5">5 item</option>
-                        <option value="10">10 item</option>
-                    </select>
-                </div>
-            </div>
+<section id="narasi-audio">
+    <h2>Katalog Pengguna & Musisi (REST API)</h2>
+    <p>Data musisi ini ditarik secara asinkron dari JSONPlaceholder REST API.</p>
+    
+    <!-- State Feedback & Tombol Retry (D.5 & E.1) -->
+    <p id="api-message" aria-live="polite" style="font-weight: bold; color: var(--brand); margin-bottom: 10px;"></p>
+    <button id="btn-retry" type="button" style="display: none; margin-bottom: 20px; width: max-content;">Coba Kembali API</button>
 
-            <!-- Tambahan Modul 5: Panel Detail Tersembunyi -->
-            <div id="detail-panel" style="display: none; padding: 15px; margin-bottom: 20px; background-color: var(--accent-blue); border: var(--border-hard); border-radius: var(--radius); box-shadow: 3px 3px 0px var(--text-dark);">
-            </div>
-            
-            <!-- Container dikosongkan. Elemen Card akan di-render melalui app.js -->
-            <div id="katalog-karya-container" class="cards" aria-live="polite">
-                <!-- Elemen dinamis akan masuk ke sini -->
-            </div>
-        </section>
+    <!-- Toolbar Pencarian dan Filter -->
+    <div class="toolbar" aria-label="Filter dan Pencarian" style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 250px;">
+            <label for="search">Cari Nama Musisi:</label>
+            <!-- (E.2) Input ini digunakan untuk filtering array di memori klien, bukan memanggil API berulang kali -->
+            <input id="search" type="text" placeholder="Ketik nama pengguna...">
+        </div>
+        <div>
+            <label for="limit">Tampilkan:</label>
+            <select id="limit">
+                <option value="3">3 item</option>
+                <option value="5" selected>5 item</option>
+                <option value="10">10 item</option>
+            </select>
+        </div>
+    </div>
+    
+    <!-- Wadah penampung data (Data akan disisipkan di sini oleh app.js) -->
+    <ul id="api-output" class="cards" style="list-style: none; padding: 0;"></ul>
+</section>
 
         <!-- Section 3: Daftar Kreator -->
         <section id="daftar-kreator">

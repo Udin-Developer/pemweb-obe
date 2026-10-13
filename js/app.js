@@ -1,98 +1,110 @@
 import { ringkasKarya, cariBerdasarkanId } from './utils.js';
 
-// Memperluas katalog data untuk mengakomodasi pengujian pencarian dan fitur limit
-const katalogMusik = [
-    { id: 'K001', judul: 'Suar', musisi: 'Moeremans', genre: 'Alternative Rock', lokasi: 'Tarakan', durasi: 5.50, file: '/audio/K001.mp3' },
-    { id: 'K002', judul: 'Vas Bunga', musisi: 'Lomba Sihir', genre: 'Alternative Pop', lokasi: 'Jakarta', durasi: 3.22, file: '/audio/K002.mp3' },
-    { id: 'K003', judul: 'Penghujung Cerita', musisi: 'Murphy Radio', genre: 'Midwest Emo', lokasi: 'Balikpapan', durasi: 4.45, file: '/audio/K003.mp3' },
-    { id: 'K004', judul: 'Ibukota', musisi: 'Traffic Jam', genre: 'Indie Pop', lokasi: 'Bandung', durasi: 3.45, file: '/audio/K004.mp3' },
-    { id: 'K005', judul: 'Masa Remaja', musisi: 'Perunggu', genre: 'Alternative Rock', lokasi: 'Jakarta', durasi: 4.20, file: '/audio/K005.mp3' },
-    { id: 'K006', judul: 'Satu Bulan', musisi: 'Bernadya', genre: 'Pop', lokasi: 'Jakarta', durasi: 4.10, file: '/audio/K006.mp3' }
-];
-
-// Pemilihan elemen DOM
-const container = document.querySelector('#katalog-karya-container');
+// Pemilihan elemen DOM untuk API
+const output = document.querySelector('#api-output');
+const message = document.querySelector('#api-message');
+const btnRetry = document.querySelector('#btn-retry');
 const searchInput = document.querySelector('#search');
 const limitSelect = document.querySelector('#limit');
-const detailPanel = document.querySelector('#detail-panel');
 
-// Fungsi rendering DOM yang aman menggunakan createElement dan textContent
-function renderItems(items) {
-    container.replaceChildren(); // Membersihkan container setiap kali fungsi dijalankan
+// Variabel global untuk menyimpan data sementara agar filtering bisa dilakukan offline
+let fetchedUsers = [];
 
-    if (items.length === 0) {
-        const pesanKosong = document.createElement('p');
-        pesanKosong.textContent = 'Karya atau musisi tidak ditemukan.';
-        container.append(pesanKosong);
-        return;
-    }
+// Instruksi D.1 & D.2: Fungsi asinkron loadUsers dengan Fetch API
+async function loadUsers() {
+    // Menampilkan state loading (D.5)
+    message.textContent = 'Memuat data musisi...';
+    message.style.color = 'var(--text-dark)';
+    btnRetry.style.display = 'none';
+    output.replaceChildren();
 
-    for (const item of items) {
-        const article = document.createElement('article');
-        article.className = 'card';
+    // Fallback data lokal (Sesuai panduan jika lab offline)
+    const USE_LOCAL_DATA = false;
+    const API_URL = 'https://jsonplaceholder.typicode.com/users'; // Ubah ke true jika ingin menggunakan data lokal
+    const LOCAL_URL = './data/musisi.json';
 
-        const title = document.createElement('h3');
-        title.textContent = item.judul;
+    try {
+        // Melakukan request GET
+        const response = await fetch(USE_LOCAL_DATA ? LOCAL_URL : API_URL);
 
-        const artist = document.createElement('p');
-        artist.textContent = item.musisi;
+        // Instruksi D.3: Memeriksa response.ok
+        if (!response.ok) {
+            throw new Error(`HTTP Error: ${response.status} - Gagal merespons data dari server.`);
+        }
 
-        const duration = document.createElement('p');
-        duration.textContent = `${item.durasi} menit`;
+        // Instruksi D.4: Parsing JSON
+        fetchedUsers = await response.json();
+        
+        // Memicu fungsi render berdasarkan filter dan limit saat ini
+        updateView();
 
-        const audio = document.createElement('audio');
-        audio.controls = true;
-        const source = document.createElement('source');
-        source.src = item.file;
-        source.type = 'audio/mpeg';
-        audio.append(source);
-        audio.append(document.createTextNode('Browser Anda tidak mendukung pemutaran audio.'));
-
-        // Latihan 2: Tombol detail untuk event delegation
-        const btnDetail = document.createElement('button');
-        btnDetail.type = 'button';
-        btnDetail.textContent = 'Lihat Info Detail';
-        btnDetail.dataset.detail = item.id;
-        btnDetail.style.marginTop = '15px'; // Penyesuaian jarak 
-
-        article.append(title, artist, duration, audio, btnDetail);
-        container.append(article);
+        // State sukses (D.5)
+        message.textContent = `Berhasil memuat ${fetchedUsers.length} data profil pengguna.`;
+        message.style.color = 'green';
+        
+    } catch (error) {
+        // Penanganan Error Handling jaringan atau API gagal (D.5)
+        console.error("Gagal melakukan penarikan data API:", error);
+        message.textContent = 'Data gagal dimuat. Periksa jaringan Anda atau coba kembali.';
+        message.style.color = 'var(--brand)';
+        btnRetry.style.display = 'inline-block'; // Menampilkan tombol retry (E.1)
     }
 }
 
-// Fungsi memunculkan panel detail
-function tampilkanDetail(id) {
-    const item = cariBerdasarkanId(katalogMusik, id);
-    if (!item) return;
-
-    detailPanel.style.display = 'block';
-    detailPanel.replaceChildren(); 
-    
-    const infoText = document.createElement('p');
-    infoText.style.fontWeight = 'bold';
-    infoText.textContent = `Info Lengkap: "${item.judul}" adalah track bergenre ${item.genre} yang dibawakan oleh ${item.musisi} dari ${item.lokasi}.`;
-    
-    const closeBtn = document.createElement('button');
-    closeBtn.textContent = 'Tutup Detail';
-    closeBtn.style.marginTop = '10px';
-    closeBtn.style.padding = '5px 10px';
-    closeBtn.addEventListener('click', () => { detailPanel.style.display = 'none'; });
-
-    detailPanel.append(infoText, closeBtn);
-}
-
-// Fungsi master untuk membaca semua status (search & limit) dan merender
+// Fungsi master merender data dengan aman (textContent) dan filter (E.2)
 function updateView() {
+    // Jika data masih kosong, jangan lakukan render filter
+    if (fetchedUsers.length === 0) return;
+
+    output.replaceChildren(); // Membersihkan DOM sebelum disuntik data baru
+
     const keyword = searchInput.value.toLowerCase();
     const limit = Number(limitSelect.value);
 
-    const hasilFilter = katalogMusik.filter(item => 
-        item.judul.toLowerCase().includes(keyword) || 
-        item.musisi.toLowerCase().includes(keyword)
+    // Instruksi E.2: Filter data array secara lokal tanpa memanggil ulang API
+    const hasilFilter = fetchedUsers.filter(user => 
+        user.name.toLowerCase().includes(keyword) || 
+        user.email.toLowerCase().includes(keyword)
     );
 
-    renderItems(hasilFilter.slice(0, limit));
+    // Membangun elemen kartu (Card) dengan aman menggunakan textContent (D.4)
+    hasilFilter.slice(0, limit).forEach(user => {
+        const li = document.createElement('li');
+        li.className = 'card';
+        
+        const title = document.createElement('h3');
+        title.textContent = user.name;
+        
+        const company = document.createElement('p');
+        company.textContent = `Perusahaan/Grup: ${user.company.name}`;
+        
+        const contact = document.createElement('p');
+        contact.textContent = `Email: ${user.email}`;
+
+        const website = document.createElement('p');
+        website.textContent = `Web: ${user.website}`;
+
+        li.append(title, company, contact, website);
+        output.append(li);
+    });
+
+    if (hasilFilter.length === 0) {
+        output.textContent = "Data tidak ditemukan berdasarkan pencarian Anda.";
+    }
 }
+
+// Event Listeners (Toolbar dan Retry)
+btnRetry.addEventListener('click', loadUsers); // E.1: Tombol Retry
+searchInput.addEventListener('input', updateView); // E.2: Pencarian interaktif tanpa Fetch ulang
+limitSelect.addEventListener('change', updateView);
+
+// Eksekusi API secara otomatis ketika halaman pertama kali dimuat
+loadUsers();
+
+// ==========================================
+// KODE DARK MODE & VALIDASI FORM (TETAP DIPERTAHANKAN)
+// ==========================================
+// (Biarkan kode Dark Mode dan validasi form pendaftaran yang ada sebelumnya di sini)
 
 
 searchInput.addEventListener('input', () => {
