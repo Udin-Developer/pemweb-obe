@@ -1,0 +1,26 @@
+CREATE TABLE users (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(100) NOT NULL,
+    email VARCHAR(190) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'user') NOT NULL DEFAULT 'user',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE kategori (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nama_kategori VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE karya (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT UNSIGNED NOT NULL,
+    kategori_id BIGINT UNSIGNED NOT NULL,
+    judul VARCHAR(150) NOT NULL,
+    nama_musisi VARCHAR(150) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_karya_user FOREIGN KEY (user_id) REFERENCES users(id),
+    CONSTRAINT fk_karya_kategori FOREIGN KEY (kategori_id) REFERENCES kategori(id)
+);
+
+CREATE INDEX idx_karya_judul ON karya(judul);

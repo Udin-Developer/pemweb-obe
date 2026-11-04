@@ -267,3 +267,18 @@ formPendaftaran.addEventListener('submit', event => {
     formStatus.style.color = 'green';
     formStatus.textContent = 'Data valid dan siap dikirim (Sistem menahan submit untuk preview).';
 });
+
+// --- FUNGSI INTEGRASI DELETE API SKENA ---
+async function hapusKarya(idKarya) {
+    if (!confirm('Apakah Anda yakin ingin menghapus rilis ini dari katalog SKENA?')) return;
+
+    const response = await fetch('/api/katalog.php?id=' + encodeURIComponent(idKarya), {
+        method: 'DELETE',
+        headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.status === 204) {
+        alert('Karya berhasil dihapus!');
+        // loadKatalog(); // reload UI
+    }
+}
